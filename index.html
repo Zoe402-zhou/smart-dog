@@ -19,6 +19,7 @@ const fruits = [
 function speak(word){
   let msg = new SpeechSynthesisUtterance(word);
   msg.lang = "en-US";
+  speechSynthesis.cancel();
   speechSynthesis.speak(msg);
 }
 
@@ -26,11 +27,14 @@ let box = document.getElementById("box");
 
 fruits.forEach(f=>{
   let div = document.createElement("div");
+
   div.innerHTML = `
-    <img src="${f.image}" width="120"><br>
-    ${f.word}
+    <img src="${f.image}" width="150"><br>
+    <b>${f.word}</b>
   `;
+
   div.onclick = ()=>speak(f.word);
+
   box.appendChild(div);
 });
 </script>
